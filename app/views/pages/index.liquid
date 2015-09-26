@@ -34,13 +34,6 @@ published: true
   </head>
   <body class="page-{{ page.slug }}">
     <div class="container">
-      <!-- Site Title -->
-      <div class="row">
-        <div class="col-md-10 col-md-offset-1 col-sm-12">
-          <h1>{{ site.name | escape }}</h1>
-        </div>
-      </div>
-
       <!-- Site Navigation -->
       <div class="row">
         <div class="col-md-10 col-md-offset-1 col-sm-12">
@@ -53,9 +46,8 @@ published: true
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" rel="home" href="/" title="{{site.seo_title}}">
-                      <img style="max-width:100px; margin-top: -7px;"
-                           src="/img/transparent-white-logo.png">
+              <a class="navbar-brand" rel="home" href="/" title="{{ site.seo_title }}">
+                      <img src="{{ 'logo.png' | theme_image_url | resize: 'x87' }}">
               </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -75,33 +67,41 @@ published: true
       <!-- Page Content -->
       <div class="row">
         <div class="col-md-10 col-md-offset-1 col-sm-12">
-          {% if page.slug != "index" %}
-            <h2>{{ page.title | escape }}</h2>
-          {% endif %}
           {% block 'main' %}
-            {% capture jumbotron_title %}
-              {% editable_text "jumbotron_title", format: "raw", rows: 1 %}
-                Life's to short not to get away for awhile!
-              {% endeditable_text %}
-            {% endcapture %}
-            {% capture jumbotron_message %}
-              {% editable_text "jumbotron_message", format: "raw", rows: 3 %}
-                Learn about cool places to see abroad, interesting things to eat, and little travel tips you won't believe you lived without.
-              {% endeditable_text %}
-            {% endcapture %}
-            {% capture jumbotron_button %}
-              {% editable_text "jumbotron_button", format: "raw", rows: 1%}
-                Browse our articles
-              {% endeditable_text %}
-            {% endcapture %}
             <div class="jumbotron">
-              <h1>{{ jumbotron_title | escape }}</h1>
-              <p class="sub-title">{{ jumbotron_message | escape }}</p>
+              <h1>{% editable_text "main_title", format: 'raw', rows: 1, priority: 102 %}Title. Double click me.{% endeditable_text %}</h1>
+              <p class="sub-title">{% editable_text "subtitle", format: 'raw', rows: 1, priority: 101 %}Title. Double click me.{% endeditable_text %}</p>
               <p>
-                <a href="/{{ locale }}/posts" class="btn btn-primary btn-lg">
-                  {{ jumbotron_button | escape }}
+                <a href="/" class="btn btn-primary btn-lg">
+                  {% editable_text 'main_cta', format: 'raw', hint: 'Text displayed on main call-to-action button', rows: 1, priority: 100 %}Companie{% endeditable_text %}
                 </a>
               </p>
+            </div>
+            <div class="row">
+              {% capture title1 %}{% editable_text "section_title_a", format: 'raw', rows: 1, hint: 'First section title', priority: 61 %}Despre noi{% endeditable_text %}{% endcapture %}
+              {% capture text1 %}
+                {% editable_text 'section_body_a', hint: 'First section displayed on homepage', priority: 60 %}
+                  <p>
+                    I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph.
+                  </p>
+                  <p>
+                    Click here to add your own text and edit me. I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph.
+                  </p>
+                {%  endeditable_text %}
+              {% endcapture %}
+              {% include 'general_section' with title: title1, content: text1, width: 4 %}
+              {% capture title2 %}{% editable_text "section_title_b", format: 'raw', rows: 1, hint: 'Second section title', priority: 31 %}Calitate{% endeditable_text %}{% endcapture %}
+              {% capture text2 %}
+                {% editable_text 'section_body_b', hint: 'Second section displayed on homepage', priority: 30 %}
+                  <p>
+                    I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph.
+                  </p>
+                  <p>
+                    Click here to add your own text and edit me. I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph. Click here to add your own text and edit me. I'm a paragraph.
+                  </p>
+                {%  endeditable_text %}
+              {% endcapture %}
+              {% include 'general_section' with title: title2, content: text2, width: 4 %}
             </div>
           {% endblock %}
         </div>

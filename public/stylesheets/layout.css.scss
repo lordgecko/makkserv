@@ -1,0 +1,45 @@
+body {
+  height: 100%;
+  font-family: Helvetica, Arial, sans-serif;
+  background: #ccc image-url('grey_background.jpg');
+  .row {
+    div {
+      background-color: #f8f8f8;
+      &.jumbotron {
+        border: 1px solid #ccc;
+      }
+    }
+  }
+}
+.navbar {
+  margin-bottom: 0;
+  padding-bottom: 5px;
+  border: none;
+  a.navbar-brand {
+    padding: 0;
+    margin: 5px 10px;
+    height: 87px;
+    box-shadow: rgba(0, 0, 0, 0.498039) 0px 1px 3px 0px;
+  }
+  ul.nav {
+    float: right;
+    li {
+      box-shadow: rgba(54, 49, 49, 0.6) 0px 2px 2px -1px;
+    }
+  }
+}
+
+footer {
+  background-color: #585858;
+  color: #ccc;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  .row div {
+    background-color: inherit;
+  }
+  p {
+    margin: 5px;
+    font-weight: bold;
+  }
+}
